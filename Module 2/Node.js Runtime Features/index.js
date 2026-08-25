@@ -33,6 +33,14 @@ function streamFile() {
   const readable = fs.createReadStream(INPUT);
   const writable = fs.createWriteStream(OUTPUT);
 
+  readable.on('error', (err) => {
+    console.error(err.message);
+  });
+
+  writable.on('error', (err) => {
+    console.error(err.message);
+  });
+
   readable.pipe(writable);
 
   writable.on('finish', () => {
